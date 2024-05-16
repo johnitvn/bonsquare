@@ -1,0 +1,17 @@
+{
+  "name": "redis",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "tags": [
+    "external-services"
+  ],
+  "sourceRoot": "components/external-services/redis",
+  "targets": {
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker compose -f components/external-services/redis/compose.yaml up -d --wait --remove-orphans"
+      }
+    }
+  }
+}

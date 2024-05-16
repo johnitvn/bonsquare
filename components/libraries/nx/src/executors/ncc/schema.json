@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "Ncc executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "buildTarget": {
+      "type": "string"
+    },
+    "outputPath": {
+      "type": "string"
+    },
+    "v8Cache": {
+      "type": "boolean",
+      "default": false
+    },
+    "minify": {
+      "type": "boolean",
+      "default": false
+    },
+    "outputFileName": {
+      "type": "string",
+      "default": "index.js"
+    }
+  },
+  "required": ["buildTarget", "outputPath"]
+}

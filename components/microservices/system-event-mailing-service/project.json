@@ -1,0 +1,139 @@
+{
+  "name": "system-event-mailing-service",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "components/microservices/system-event-mailing-service/src",
+  "projectType": "application",
+  "tags": [],
+  "implicitDependencies": ["static", "languages", "mongodb", "maildev"],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/components/microservices/system-event-mailing-service/webpack",
+        "main": "components/microservices/system-event-mailing-service/src/main.ts",
+        "tsConfig": "components/microservices/system-event-mailing-service/tsconfig.app.json",
+        "assets": [
+          "components/microservices/system-event-mailing-service/src/assets",
+          {
+            "input": "components/languages/translations/system-event-mailing-service",
+            "glob": "*.json",
+            "output": "/i18n/"
+          },
+          {
+            "input": "components/static/files",
+            "glob": "*",
+            "output": "/static/"
+          },
+          {
+            "input": "components/microservices/system-event-mailing-service-proto/proto",
+            "glob": "*.proto",
+            "output": "/proto/"
+          }
+        ],
+        "webpackConfig": "components/microservices/system-event-mailing-service/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "dependsOn": ["stop", "^start"],
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "system-event-mailing-service:build",
+        "inspect": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "system-event-mailing-service:build:development"
+        },
+        "production": {
+          "buildTarget": "system-event-mailing-service:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "components/microservices/system-event-mailing-service/jest.config.ts"
+      }
+    },
+    "ncc": {
+      "executor": "@bonsquare/nx:ncc",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/components/microservices/system-event-mailing-service/ncc",
+        "buildTarget": "system-event-mailing-service:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "system-event-mailing-service:build:development"
+        },
+        "production": {
+          "buildTarget": "system-event-mailing-service:build:production"
+        }
+      }
+    },
+    "ncc-serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "runBuildTargetDependencies": true,
+        "buildTarget": "system-event-mailing-service:ncc"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "system-event-mailing-service:ncc:development"
+        },
+        "production": {
+          "buildTarget": "system-event-mailing-service:ncc:production"
+        }
+      }
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {
+          "quiet": true,
+          "load": true,
+          "push": false,
+          "tags": ["system-event-mailing-service:local"]
+        },
+        "production": {
+          "quiet": true,
+          "load": false,
+          "push": true,
+          "metadata": {
+            "images": ["docker.io/bonsquare/system-event-mailing-service"],
+            "tags": ["type=ref,event=branch", "type=semver,pattern={{major}}.{{minor}}"]
+          }
+        }
+      }
+    },
+    "start": {
+      "dependsOn": ["container", "^start"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker compose -f components/microservices/system-event-mailing-service/compose.yaml up -d --wait --remove-orphans"
+      }
+    },
+    "stop": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker compose -f components/microservices/system-event-mailing-service/compose.yaml down"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

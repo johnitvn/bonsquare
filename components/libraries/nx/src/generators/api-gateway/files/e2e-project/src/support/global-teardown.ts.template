@@ -1,0 +1,7 @@
+/* eslint-disable */
+import { exec } from '@actions/exec';
+
+module.exports = async function () {
+  console.log('\nTearing down...\n');
+  await exec('nx', ['stop','<%= name %>']);
+};

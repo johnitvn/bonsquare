@@ -1,0 +1,17 @@
+{
+  "name": "s3",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "components/external-services/s3",
+  "projectType": "application",
+  "tags": [
+    "external-services"
+  ],
+  "targets": {
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker compose -f components/external-services/s3/compose.yaml up -d --wait --remove-orphans"
+      }
+    }
+  }
+}

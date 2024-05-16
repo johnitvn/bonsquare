@@ -1,0 +1,16 @@
+services:
+  elastic:
+    container_name: elastic
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    restart: unless-stopped
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+    ports:
+      - 9200:9200
+    healthcheck:
+      test: ['CMD', 'curl', '-s', '-f', 'http://localhost:9200']
+      interval: 10s
+      timeout: 10s
+      retries: 5

@@ -1,0 +1,35 @@
+import { LogWriter } from '@bonsquare/libs/common/log-writer';
+import { Logger } from '@nestjs/common';
+import { NestApplication, NestFactory } from '@nestjs/core';
+import { GrpcOptions, Transport } from '@nestjs/microservices';
+import { join } from 'path';
+import { AppConfigService } from './app/config/app/config.service';
+import { AppModule } from './app/app.module';
+
+export const ASSETS_PATH = join(__dirname, 'assets');
+
+async function bootstrap() {
+  const logger = new LogWriter('MainBootstrap', true, '<%= name.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %>');
+  logger.info('Application startting');
+
+  const app = await NestFactory.create<NestApplication>(AppModule, { logger });
+  const { port } = app.get<AppConfigService>(AppConfigService);
+
+  app.connectMicroservice<GrpcOptions>(
+    {
+      transport: Transport.GRPC,
+      options: {
+        url: `0.0.0.0:${port}`,
+        package: '<%= name.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %>',
+        protoPath: join(ASSETS_PATH, '<%= name %>.proto')
+      }
+    },
+    { inheritAppConfig: true }
+  );
+  await app.init();
+  await app.startAllMicroservices();
+
+  Logger.log(`Application started and listening on ${port}!!!`);
+}
+
+bootstrap();

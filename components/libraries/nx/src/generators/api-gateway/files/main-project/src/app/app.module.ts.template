@@ -1,0 +1,28 @@
+import { Module } from '@nestjs/common';
+import { AppConfigModule } from './config/app/config.module';
+import { AcceptLanguageResolver, HeaderResolver, I18nModule } from 'nestjs-i18n';
+import { join } from 'path';
+import { ASSETS_PATH } from '../main';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
+@Module({
+  imports: [
+    AppConfigModule,
+    I18nModule.forRootAsync({
+      resolvers: [new HeaderResolver(['x-custom-lang']), AcceptLanguageResolver, AcceptLanguageResolver],
+      useFactory: () => {
+        return {
+          fallbackLanguage: 'en',
+          logging: true,
+          loaderOptions: {
+            path: join(ASSETS_PATH, 'i18n')
+          }
+        };
+      }
+    })
+  ],
+  controllers: [AppController],
+  providers: [AppService]
+})
+export class AppModule {}

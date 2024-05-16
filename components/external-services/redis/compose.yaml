@@ -1,0 +1,12 @@
+services:
+  redis:
+    container_name: redis
+    image: redis:6.2-alpine
+    ports:
+      - 6379:6379/tcp
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD-SHELL', 'redis-cli ping | grep PONG']
+      interval: 1s
+      timeout: 3s
+      retries: 5

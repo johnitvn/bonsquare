@@ -1,0 +1,17 @@
+{
+  "name": "fluentd",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "tags": [
+    "external-services"
+  ],
+  "sourceRoot": "components/external-services/fluentd",
+  "targets": {
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker compose -f components/external-services/fluentd/compose.yaml up -d --wait --remove-orphans"
+      }
+    }
+  }
+}

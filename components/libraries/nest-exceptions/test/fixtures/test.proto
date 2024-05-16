@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package grpc_test_service;
+
+message Empty {}
+
+service GrpcTestService {
+  rpc ping (Empty) returns (Empty) {}
+}
+
+

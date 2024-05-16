@@ -1,0 +1,29 @@
+{
+  "generators": {
+    "api-gateway": {
+      "factory": "./src/generators/api-gateway/generator",
+      "schema": "./src/generators/api-gateway/schema.json",
+      "description": "api gateway generator"
+    },
+    "microservice": {
+      "factory": "./src/generators/microservice/generator",
+      "schema": "./src/generators/microservice/schema.json",
+      "description": "microservice generator"
+    },
+    "external-service": {
+      "factory": "./src/generators/external-service/generator",
+      "schema": "./src/generators/external-service/schema.json",
+      "description": "external-service generator"
+    },
+    "website": {
+      "factory": "./src/generators/website/generator",
+      "schema": "./src/generators/website/schema.json",
+      "description": "website generator"
+    },
+    "mongoose-schema": {
+      "factory": "./src/generators/mongoose-schema/generator",
+      "schema": "./src/generators/mongoose-schema/schema.json",
+      "description": "mongoose-schema generator"
+    }
+  }
+}

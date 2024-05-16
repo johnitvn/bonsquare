@@ -1,0 +1,26 @@
+{
+  "name": "nest-exceptions",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "components/libraries/nest-exceptions/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/components/libraries/nest-exceptions",
+        "main": "components/libraries/nest-exceptions/src/index.ts",
+        "tsConfig": "components/libraries/nest-exceptions/tsconfig.lib.json",
+        "assets": ["components/libraries/nest-exceptions/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "components/libraries/nest-exceptions/jest.config.ts"
+      }
+    }
+  }
+}

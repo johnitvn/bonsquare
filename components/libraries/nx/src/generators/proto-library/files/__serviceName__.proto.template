@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package <%= serviceName.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %>;
+
+message Empty {}
+
+service <%= serviceName.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %> {
+  rpc ping (Empty) returns (Empty) {}
+}

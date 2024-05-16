@@ -1,0 +1,30 @@
+{
+  "recommendations": [
+    "nrwl.angular-console",
+    "firsttris.vscode-jest-runner",
+    "ms-playwright.playwright",
+    "stylelint.vscode-stylelint",
+    "ms-azuretools.vscode-docker",
+    "eamodio.gitlens",
+    "hediet.vscode-drawio",
+    "stringham.move-ts",
+    "christian-kohler.npm-intellisense",
+    "pmneo.tsimporter",
+    "dskwrk.vscode-generate-getter-setter",
+    "christian-kohler.path-intellisense",
+    "stivo.tailwind-fold",
+    "bradlc.vscode-tailwindcss",
+    "angular.ng-template",
+    "cyrilletuzi.angular-schematics",
+    "postman.postman-for-vscode",
+    "ms-vscode-remote.remote-containers",
+    "editorconfig.editorconfig",
+    "github.vscode-github-actions",
+    "Postman.postman-for-vscode",
+    "vincaslt.highlight-matching-tag",
+    "digitalbrainstem.javascript-ejs-support",
+    "esbenp.prettier-vscode",
+    "shd101wyy.markdown-preview-enhanced",
+    "mongodb.mongodb-vscode"
+  ]
+}

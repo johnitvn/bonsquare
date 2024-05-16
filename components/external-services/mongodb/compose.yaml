@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:4.4
+    ports:
+      - 27017:27017/tcp
+    restart: unless-stopped
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok'
+      interval: 10s
+      timeout: 10s
+      retries: 5

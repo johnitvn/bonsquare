@@ -1,0 +1,13 @@
+services:
+  maildev:
+    container_name: maildev
+    image: maildev/maildev
+    restart: unless-stopped
+    ports:
+      - 1080:1080/tcp
+      - 1025:1025/tcp
+    healthcheck:
+      test: ['CMD', 'nc', '-vz', '-w1', '127.0.0.1', '1080']
+      interval: 10s
+      timeout: 10s
+      retries: 5

@@ -1,0 +1,7 @@
+{
+  "name": "static",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "components/static/files",
+  "projectType": "library",
+  "targets": {}
+}

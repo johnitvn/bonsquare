@@ -1,0 +1,63 @@
+{
+  "name": "Bonsquare Development Container",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-20.04",
+  "runArgs": ["--name", "bonsquare-development-container"],
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRootDocker": "true",
+      "moby": "true"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "nodeGypDependencies": true,
+      "version": "lts",
+      "nvmVersion": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/nx-npm:1": {
+      "version": "latest"
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "pnpm i",
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Postman.postman-for-vscode",
+        "nrwl.angular-console",
+        "firsttris.vscode-jest-runner",
+        "ms-playwright.playwright",
+        "stylelint.vscode-stylelint",
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        "hediet.vscode-drawio",
+        "stringham.move-ts",
+        "christian-kohler.npm-intellisense",
+        "pmneo.tsimporter",
+        "dskwrk.vscode-generate-getter-setter",
+        "christian-kohler.path-intellisense",
+        "stivo.tailwind-fold",
+        "bradlc.vscode-tailwindcss",
+        "angular.ng-template",
+        "cyrilletuzi.angular-schematics",
+        "postman.postman-for-vscode",
+        "ms-vscode-remote.remote-containers",
+        "editorconfig.editorconfig",
+        "github.vscode-github-actions",
+        "vincaslt.highlight-matching-tag",
+        "DigitalBrainstem.javascript-ejs-support",
+        "esbenp.prettier-vscode",
+        "shd101wyy.markdown-preview-enhanced",
+        "mongodb.mongodb-vscode"
+      ]
+    }
+  }
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}

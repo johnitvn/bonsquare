@@ -1,0 +1,31 @@
+name: On Push
+on:
+  push:
+    branches: ['main', 'dev']
+    paths-ignore:
+      - '**/README.md'
+      - '.vscode/**/*'
+      - '.husky/**/*'
+
+jobs:
+  intergration:
+    name: Intergration
+    runs-on: [self-hosted]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install nodejs, pnpm, node_modules
+        uses: ./.github/actions/setup-project
+
+      - name: Lint
+        run: npx nx run-many -t lint
+
+      - name: Test
+        run: npx nx run-many -t test
+
+      - name: Build
+        run: npx nx run-many -t build,ncc,server
+
+      - name: E2E Test
+        run: npx nx run-many -t e2e --parallel=false

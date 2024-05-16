@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "esModuleInterop": true,
+    "declaration": true,
+    "types": ["node"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/generators/api-gateway/files/main-project/src/app/config/app/config.service.ts.template",
+    "src/generators/microservice/files/proto-project/src/index.ts.template",
+    "src/generators/mongoose-schema/files/__name_.schema.ts.template"
+  ],
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+}

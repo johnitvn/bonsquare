@@ -1,0 +1,44 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@bonsquare/await-timeout": ["components/libraries/await-timeout/src/index.ts"],
+      "@bonsquare/iam-service-proto": ["components/microservices/iam-service-proto/src/index.ts"],
+      "@bonsquare/languages": ["components/languages/src/index.ts"],
+      "@bonsquare/log-writer": ["components/libraries/log-writer/src/index.ts"],
+      "@bonsquare/nest-agenda": ["components/libraries/nest-agenda/src/index.ts"],
+      "@bonsquare/nest-api-gateway": ["components/libraries/nest-api-gateway/src/index.ts"],
+      "@bonsquare/nest-class-validation": ["components/libraries/nest-class-validation/src/index.ts"],
+      "@bonsquare/nest-exceptions": ["components/libraries/nest-exceptions/src/index.ts"],
+      "@bonsquare/nest-i18n-loader": ["components/libraries/nest-i18n-loader/src/index.ts"],
+      "@bonsquare/nest-logger": ["components/libraries/nest-logger/src/index.ts"],
+      "@bonsquare/nest-microservice": ["components/libraries/nest-microservice/src/index.ts"],
+      "@bonsquare/ng-link": ["components/libraries/ng-link/src/index.ts"],
+      "@bonsquare/ng-logger": ["components/libraries/ng-logger/src/index.ts"],
+      "@bonsquare/ng-runtime-config": ["components/libraries/ng-runtime-config/src/index.ts"],
+      "@bonsquare/nx": ["components/libraries/nx/src/index.ts"],
+      "@bonsquare/sleep": ["components/libraries/sleep/src/index.ts"],
+      "@bonsquare/system-event-mailing-service-proto": [
+        "components/microservices/system-event-mailing-service-proto/src/index.ts"
+      ],
+      "@bonsquare/testing": ["components/libraries/testing/src/index.ts"],
+      "@bonsquare/web-api-gateway-interfaces": [
+        "components/microservice-gateways/web-api-gateway-interfaces/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

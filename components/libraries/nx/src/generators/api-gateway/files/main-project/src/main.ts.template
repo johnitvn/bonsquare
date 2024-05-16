@@ -1,0 +1,39 @@
+import { ClassValidationPipe } from '@bonsquare/nest-class-validation';
+import { LogWriter } from '@bonsquare/libs/common/log-writer';
+import { ResolvePromisesInterceptor } from '@bonsquare/nest-resolve-promises-interceptor';
+import { ClassSerializerInterceptor } from '@nestjs/common';
+import { NestFactory, Reflector } from '@nestjs/core';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
+import helmet from '@fastify/helmet';
+import { useContainer } from 'class-validator';
+import { join } from 'path';
+import { AppModule } from './app/app.module';
+import { AppConfigService } from './app/config/app/config.service';
+
+export const ASSETS_PATH = join(__dirname, 'assets');
+
+async function bootstrap() {
+  const logger = new LogWriter('MainBootstrap', true, '<%= name.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %>');
+  logger.info('Application startting');
+
+  const adapter = new FastifyAdapter({});
+  const app = await NestFactory.create<NestFastifyApplication>(AppModule,adapter,{logger});
+
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
+  app.useGlobalPipes(new ClassValidationPipe());
+  app.useGlobalInterceptors(
+    new ResolvePromisesInterceptor(),
+    new ClassSerializerInterceptor(app.get(Reflector))
+  );
+  await app.register(helmet);
+
+  const { port } = app.get<AppConfigService>(AppConfigService);
+  await app.listen(port, '0.0.0.0');
+
+  logger.log(`Application started and listening on ${port}!!!`, 'MainBootstrap');
+}
+
+bootstrap();

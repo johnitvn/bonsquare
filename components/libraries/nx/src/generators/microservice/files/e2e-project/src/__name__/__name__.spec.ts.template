@@ -1,0 +1,44 @@
+import { <%= name.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %> } from '@bonsquare/<%= name %>-proto';
+import { INestApplication } from '@nestjs/common';
+import { ClientGrpc, ClientsModule, Transport } from '@nestjs/microservices';
+import { Test, TestingModule } from '@nestjs/testing';
+import { join } from 'path';
+
+describe('ping message', () => {
+  let app: INestApplication;
+  let client: ClientGrpc;
+  let service: IamService;
+
+  beforeAll(async () => {
+    const [host, port] = globalThis.__BASE_URL__.split(':');
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [
+        ClientsModule.register([
+          {
+            name: '<%= name.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %>',
+            transport: Transport.GRPC,
+            options: {
+              url: `${host}:${port}`,
+              package: '<%= name.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %>',
+              protoPath: join(__dirname, '../../../../../libs/microservices/<%=name%>-proto/src/<%=name%>.proto')
+            }
+          }
+        ])
+      ]
+    }).compile();
+
+    app = moduleFixture.createNestApplication();
+    await app.init();
+
+    client = app.get('<%= name.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %>');
+    service = client.getService<<%= name.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %>>('<%= name.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %>');
+  });
+
+  afterAll(async () => {
+    await app.close();
+  });
+
+  it('should ping success', async () => {
+    await service.ping({}).toPromise();
+  });
+});

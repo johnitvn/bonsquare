@@ -1,0 +1,11 @@
+{
+  "name": "@bonsquare/nest-class-validation",
+  "version": "0.0.1",
+  "dependencies": {
+    "@bonsquare/nest-logger": "0.0.1"
+  },
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts",
+  "private": true
+}

@@ -1,0 +1,26 @@
+{
+  "name": "testing",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "components/libraries/testing/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/components/libraries/testing",
+        "main": "components/libraries/testing/src/index.ts",
+        "tsConfig": "components/libraries/testing/tsconfig.lib.json",
+        "assets": ["components/libraries/testing/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "components/libraries/testing/jest.config.ts"
+      }
+    }
+  }
+}

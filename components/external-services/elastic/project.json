@@ -1,0 +1,17 @@
+{
+  "name": "elastic",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "tags": [
+    "external-services"
+  ],
+  "sourceRoot": "components/external-services/elastic",
+  "targets": {
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker compose -f components/external-services/elastic/compose.yaml up -d --wait --remove-orphans"
+      }
+    }
+  }
+}

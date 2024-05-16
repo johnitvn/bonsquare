@@ -1,0 +1,26 @@
+{
+  "name": "web-api-gateway-interfaces",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "components/microservice-gateways/web-api-gateway-interfaces/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/components/microservice-gateways/web-api-gateway-interfaces",
+        "main": "components/microservice-gateways/web-api-gateway-interfaces/src/index.ts",
+        "tsConfig": "components/microservice-gateways/web-api-gateway-interfaces/tsconfig.lib.json",
+        "assets": ["components/microservice-gateways/web-api-gateway-interfaces/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "components/microservice-gateways/web-api-gateway-interfaces/jest.config.ts"
+      }
+    }
+  }
+}

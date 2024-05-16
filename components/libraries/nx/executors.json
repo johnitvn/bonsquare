@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "ncc": {
+      "implementation": "./src/executors/ncc/executor",
+      "schema": "./src/executors/ncc/schema.json",
+      "description": "ncc executor"
+    }
+  }
+}

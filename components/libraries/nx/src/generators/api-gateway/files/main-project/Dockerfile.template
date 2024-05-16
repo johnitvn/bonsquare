@@ -1,0 +1,12 @@
+FROM alpine
+
+RUN apk add --no-cache libstdc++ dumb-init
+
+COPY --from=node:lts-alpine /usr/local/include/node /usr/local/include/node
+COPY --from=node:lts-alpine /usr/local/bin/node /usr/local/bin/node
+
+COPY dist/<%= root %>/ncc /usr/app/
+
+WORKDIR /usr/app
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["node","index.js"]

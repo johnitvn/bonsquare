@@ -1,0 +1,24 @@
+import { join } from 'path';
+import { ASSETS_PATH } from '../main';
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppConfigModule } from './config/app/config.module';
+import { GrpcMetadataResolver, I18nModule } from 'nestjs-i18n';
+
+@Module({
+  imports: [
+    AppConfigModule,
+    I18nModule.forRootAsync({
+      resolvers: [new GrpcMetadataResolver(['lang'])],
+      useFactory: () => ({
+        fallbackLanguage: 'en',
+        loaderOptions: {
+          path: join(ASSETS_PATH, '/i18n/')
+        }
+      })
+    })
+  ],
+  controllers: [AppController],
+  providers: []
+})
+export class AppModule {}

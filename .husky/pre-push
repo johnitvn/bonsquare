@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "\Lint & Unit Test & Build ==================\n"
+npx nx run-many -t lint,test,ncc,server
+
+echo "\E2E Testing ==================\n"
+npx nx run-many -t e2e --parallel=false

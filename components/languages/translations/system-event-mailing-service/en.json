@@ -1,0 +1,9 @@
+{
+  "activation-email": {
+    "subject": "Active your Bonsquare account",
+    "fullName": "{firstName} {lastName}",
+    "heading": "Hi {fullName}!",
+    "message": "You have registered for a Bonsquare account. Please activate your account by clicking the button below to use the service",
+    "actionButtonTitle": "Active Account"
+  }
+}

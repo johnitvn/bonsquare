@@ -1,0 +1,11 @@
+import { Controller } from '@nestjs/common';
+import { GrpcMethod } from '@nestjs/microservices';
+@Controller()
+export class AppController {
+
+  @GrpcMethod('<%= name.replace(/(^|-)([a-z])/g, (_, p1, p2) => p2.toUpperCase()) %>', 'ping')
+  ping() {
+    // empty response just for test latency
+  }
+
+}

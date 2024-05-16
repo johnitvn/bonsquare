@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package IAMService;
+
+import "google/protobuf/empty.proto";
+
+message IdentityCredentials {
+ required string email = 1 ;
+ required string password = 2 ;
+}
+
+message IdentityInformation {
+  required string id = 1 ;
+  required string email = 2 ;
+  required string firstName = 3 ;
+  optional string middleName = 4 ;
+  required string lastName = 5 ;
+}
+
+service IAMService {
+  rpc ping (Empty) returns (Empty) {}
+  rpc identityVerification (IdentityCredentials) returns (IdentityInformation) {}
+}

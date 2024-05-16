@@ -1,0 +1,29 @@
+{
+  "name": "sleep",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "components/libraries/sleep/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/components/libraries/sleep",
+        "main": "components/libraries/sleep/src/index.ts",
+        "tsConfig": "components/libraries/sleep/tsconfig.lib.json",
+        "assets": ["components/libraries/sleep/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "components/libraries/sleep/jest.config.ts"
+      }
+    }
+  }
+}

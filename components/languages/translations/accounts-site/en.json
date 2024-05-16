@@ -1,0 +1,20 @@
+{
+  "sign-in": {
+    "title": "Sign In",
+    "email": "Email",
+    "password": "Password",
+    "button": "Sign In",
+    "errors": {
+      "email": {
+        "required": "Please enter your email. This field is required",
+        "pattern": "Please enter a valid email"
+      },
+      "password": {
+        "required": "Please enter your password. If you forgot, click Forgot password to reset it.",
+        "minlength": "The password must be at least 8 characters long",
+        "maxlength": "The password must not be longer than 512 characters",
+        "pattern": "The password must include lowercase letters, uppercase letters, numbers, and special characters"
+      }
+    }
+  }
+}

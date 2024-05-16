@@ -1,0 +1,13 @@
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { AppEnvironmentVariables } from './configuration';
+
+@Injectable()
+export class AppConfigService {
+  constructor(private configService: ConfigService) {}
+
+  get port(): number {
+    return this.configService.get<AppEnvironmentVariables>('PORT', { infer: true });
+  }
+
+}

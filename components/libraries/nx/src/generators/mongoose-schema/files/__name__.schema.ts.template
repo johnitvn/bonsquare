@@ -1,0 +1,16 @@
+import { ModelDefinition, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument, Model } from 'mongoose';
+
+@Schema({ timestamps: true })
+export class <%=name.charAt(0).toUpperCase() + name.slice(1) %> {
+  @Prop()
+  createdAt: Date;
+
+  @Prop()
+  updatedAt: Date;
+}
+
+export type <%=name.charAt(0).toUpperCase() + name.slice(1) %>Model = Model<<%=name.charAt(0).toUpperCase() + name.slice(1) %>>;
+export type <%=name.charAt(0).toUpperCase() + name.slice(1) %>Document = HydratedDocument<<%=name.charAt(0).toUpperCase() + name.slice(1) %>>;
+export const <%=name.charAt(0).toUpperCase() + name.slice(1) %>Schema = SchemaFactory.createForClass(<%=name.charAt(0).toUpperCase() + name.slice(1) %>);
+export const <%=name.charAt(0).toUpperCase() + name.slice(1) %>ModelDefinition: ModelDefinition = { name: <%=name.charAt(0).toUpperCase() + name.slice(1) %>.name, schema: <%=name.charAt(0).toUpperCase() + name.slice(1) %>Schema };

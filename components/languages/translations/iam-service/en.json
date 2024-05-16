@@ -1,0 +1,6 @@
+{
+  "sign-in": {
+    "account-not-found": "Could not find your account",
+    "wrong-password": "Wrong password. Try again or click Forgot password to reset it."
+  }
+}

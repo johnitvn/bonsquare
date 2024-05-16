@@ -1,0 +1,25 @@
+services:
+  iam-service:
+    container_name: iam-service
+    image: iam-service:local
+    ports:
+      - '30001:30001'
+    env_file:
+      - ./.env
+    environment:
+      - LOG_FORMAT=json
+    extra_hosts:
+      - 'host.docker.internal=host-gateway'
+    dns:
+      - 1.1.1.1
+    healthcheck:
+      test: 'nc -vz -w1 0.0.0.0 30001 && sleep 2'
+      start_period: 2s
+      interval: 2s
+      timeout: 30s
+      retries: 15
+    logging:
+      driver: 'fluentd'
+      options:
+        fluentd-address: host.docker.internal:24224
+        tag: iam-service

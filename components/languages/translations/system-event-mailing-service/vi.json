@@ -1,0 +1,9 @@
+{
+  "activation-email": {
+    "subject": "Kích hoạt tài khoản Bonsquare của bạn",
+    "heading": "Chào {fullName}!",
+    "fullName": "{firstName} {lastName}",
+    "message": "Bạn đã đăng ký tài khoản Bonsquare. Vui lòng kích hoạt tài khoản của bạn bằng cách nhấn vào nút bên dưới để sử dụng dịch vụ",
+    "actionButtonTitle": "Kích hoạt tài khoản"
+  }
+}

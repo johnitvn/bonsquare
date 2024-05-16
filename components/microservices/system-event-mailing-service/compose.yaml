@@ -1,0 +1,25 @@
+services:
+  system-event-mailing-service:
+    container_name: system-event-mailing-service
+    image: system-event-mailing-service:local
+    ports:
+      - '30000:30000'
+    env_file:
+      - ./.env
+    environment:
+      - LOG_FORMAT=json
+    extra_hosts:
+      - 'host.docker.internal=host-gateway'
+    dns:
+      - 1.1.1.1
+    healthcheck:
+      test: 'nc -vz -w1 0.0.0.0 30000 && sleep 2'
+      start_period: 2s
+      interval: 2s
+      timeout: 30s
+      retries: 15
+    logging:
+      driver: 'fluentd'
+      options:
+        fluentd-address: host.docker.internal:24224
+        tag: system-event-mailing-service

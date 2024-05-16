@@ -1,0 +1,26 @@
+{
+  "name": "system-event-mailing-service-proto",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "components/microservices/system-event-mailing-service-proto/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/components/microservices/system-event-mailing-service-proto",
+        "main": "components/microservices/system-event-mailing-service-proto/src/index.ts",
+        "tsConfig": "components/microservices/system-event-mailing-service-proto/tsconfig.lib.json",
+        "assets": ["components/microservices/system-event-mailing-service-proto/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "components/microservices/system-event-mailing-service-proto/jest.config.ts"
+      }
+    }
+  }
+}
